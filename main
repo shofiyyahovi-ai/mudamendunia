@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --brand: #7C5CFC;
+    --brand-light: #EDE8FF;
+    --brand-mid: #A98BFF;
+    --accent: #FF6B6B;
+    --accent2: #FFD166;
+    --accent3: #06D6A0;
+    --bg: #0D0B14;
+    --bg2: #160E2A;
+    --bg3: #1E1535;
+    --card: #1A1230;
+    --card2: #231844;
+    --border: rgba(124,92,252,0.18);
+    --border2: rgba(255,255,255,0.06);
+    --text: #F2EEFF;
+    --text2: #A899CC;
+    --text3: #6B5A96;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-pill: 100px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+
+  .app { display: flex; flex-direction: column; min-height: 100vh; }
+
+  /* SCREEN SYSTEM */
+  .screen { display: none; flex: 1; flex-direction: column; animation: fadeIn 0.35s ease; }
+  .screen.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── LANDING SCREEN ─── */
+  #screen-landing {
+    background: radial-gradient(ellipse at 30% 20%, rgba(124,92,252,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,107,107,0.12) 0%, transparent 50%),
+                var(--bg);
+    align-items: center; justify-content: center; text-align: center; padding: 3rem 2rem;
+    min-height: 100vh;
+  }
+
+  .logo-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,92,252,0.15); border: 1px solid var(--border);
+    padding: 8px 18px; border-radius: var(--radius-pill);
+    font-size: 13px; color: var(--brand-mid); font-weight: 500;
+    margin-bottom: 2.5rem; letter-spacing: 0.02em;
+  }
+
+  .landing-title {
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 800; line-height: 1.08;
+    background: linear-gradient(135deg, #F2EEFF 0%, #A98BFF 50%, #7C5CFC 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 1.25rem;
+  }
+
+  .landing-sub {
+    font-size: 1.1rem; color: var(--text2); max-width: 480px;
+    margin: 0 auto 2.5rem; font-weight: 300;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 28px; border-radius: var(--radius-pill);
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+    cursor: pointer; border: none; transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--brand); color: #fff;
+    box-shadow: 0 8px 32px rgba(124,92,252,0.4);
+  }
+  .btn-primary:hover { background: #9370FF; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,92,252,0.5); }
+  .btn-ghost {
+    background: transparent; color: var(--text2);
+    border: 1px solid var(--border2);
+  }
+  .btn-ghost:hover { background: var(--card); color: var(--text); }
+  .btn-sm { padding: 9px 18px; font-size: 13px; }
+  .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 6px 24px rgba(255,107,107,0.35); }
+  .btn-accent:hover { transform: translateY(-1px); }
+
+  .landing-actions { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
+  .landing-features {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--border2);
+  }
+  .feat-pill {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: var(--text2);
+  }
+  .feat-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ─── ONBOARDING ─── */
+  #screen-onboarding {
+    background: radial-gradient(ellipse at 70% 10%, rgba(124,92,252,0.2) 0%, transparent 55%),
+                var(--bg);
+    min-height: 100vh;
+  }
+
+  .onboard-header {
+    padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .progress-bar-wrap { flex: 1; margin: 0 2rem; }
+  .progress-bar-bg { height: 4px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand-mid)); border-radius: 4px; transition: width 0.4s ease; }
+  .progress-label { font-size: 12px; color: var(--text3); text-align: right; margin-top: 6px; }
+
+  .onboard-body { flex: 1; padding: 2.5rem 2rem; max-width: 600px; margin: 0 auto; width: 100%; }
+  .onboard-step { display: none; }
+  .onboard-step.active { display: block; animation: fadeIn 0.3s ease; }
+
+  .step-tag {
+    font-size: 12px; letter-spacing: 0.08em; color: var(--brand-mid); font-weight: 600;
+    text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  .step-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
+  .step-sub { color: var(--text2); margin-bottom: 2rem; font-size: 0.95rem; }
+
+  /* Options grid */
+  .options-grid { display: grid; gap: 10px; }
+  .options-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .option-card {
+    background: var(--card); border: 1.5px solid var(--border2);
+    border-radius: var(--radius); padding: 1rem 1.25rem;
+    cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .option-card:hover { border-color: rgba(124,92,252,0.4); background: var(--card2); }
+  .option-card.selected { border-color: var(--brand); background: rgba(124,92,252,0.12); }
+  .option-card.selected .opt-check { background: var(--brand); border-color: var(--brand); }
+  .option-card.selected .opt-check::after { display: block; }
+  .opt-check {
+    width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--border);
+    flex-shrink: 0; position: relative; transition: all 0.2s;
+  }
+  .opt-check::after {
+    content: ''; display: none; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 8px; height: 8px; border-radius: 50%; background: #fff;
+  }
+  .opt-emoji { font-size: 1.4rem; }
+  .opt-text { flex: 1; }
+  .opt-label { font-size: 14px; font-weight: 500; }
+  .opt-desc { font-size: 12px; color: var(--text3); }
+
+  /* Slider question */
+  .slider-wrap { margin: 1rem 0; }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text3); margin-top: 8px; }
+  input[type=range] {
+    width: 100%; -webkit-appearance: none; height: 6px;
+    background: var(--bg3); border-radius: 6px; outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--brand); cursor: pointer; border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px rgba(124,92,252,0.4);
+  }
+  .slider-value { text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--brand-mid); margin-bottom: 0.5rem; }
+
+  /* Text area */
+  textarea.q-input {
+    width: 100%; background: var(--card); border: 1.5px solid var(--border2);
+    border-radius: var(--radius); color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 15px; padding: 1rem 1.25rem; resize: none; outline: none;
+    transition: border-color 0.2s;
+  }
+  textarea.q-input:focus { border-color: rgba(124,92,252,0.5); }
+  textarea.q-input::placeholder { color: var(--text3); }
+
+  .onboard-footer { padding: 1.5rem 2rem; display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--border2); }
+
+  /* ─── RESULT SCREEN ─── */
+  #screen-result {
+    background: radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.3) 0%, transparent 60%),
+                var(--bg); min-height: 100vh; padding: 3rem 2rem;
+  }
+  .result-center { max-width: 520px; margin: 0 auto; text-align: center; }
+  .profile-orb {
+    width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--brand) 0%, #FF6B6B 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; box-shadow: 0 0 60px rgba(124,92,252,0.4);
+    animation: pulse-orb 3s ease-in-out infinite;
+  }
+  @keyframes pulse-orb { 0%, 100% { box-shadow: 0 0 40px rgba(124,92,252,0.4); } 50% { box-shadow: 0 0 80px rgba(124,92,252,0.6); } }
+  .vibe-tag {
+    display: inline-block; background: rgba(124,92,252,0.2); color: var(--brand-mid);
+    border: 1px solid rgba(124,92,252,0.4); padding: 6px 16px; border-radius: var(--radius-pill);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1rem;
+  }
+  .result-name { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.75rem; }
+  .result-desc { color: var(--text2); margin-bottom: 2rem; font-size: 0.95rem; }
+
+  .traits-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 2rem; text-align: left; }
+  .trait-card {
+    background: var(--card); border: 1px solid var(--border2);
+    border-radius: var(--radius-sm); padding: 0.85rem 1rem;
+  }
+  .trait-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .trait-val { font-size: 14px; font-weight: 600; color: var(--brand-mid); }
+
+  .interests-wrap { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 2rem; }
+  .interest-pill {
+    background: var(--card2); border: 1px solid var(--border);
+    padding: 7px 14px; border-radius: var(--radius-pill); font-size: 13px;
+  }
+
+  /* ─── MAIN APP ─── */
+  #screen-main { flex-direction: row; height: 100vh; overflow: hidden; }
+
+  /* Sidebar nav */
+  .sidebar {
+    width: 72px; background: var(--bg2); border-right: 1px solid var(--border2);
+    display: flex; flex-direction: column; align-items: center; padding: 1.5rem 0; gap: 4px;
+    flex-shrink: 0;
+  }
+  .sidebar-logo {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--brand), #FF6B6B);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+  .nav-btn {
+    width: 48px; height: 48px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; position: relative;
+    font-size: 1.2rem; border: none; background: transparent; color: var(--text3);
+  }
+  .nav-btn:hover { background: var(--card); color: var(--text2); }
+  .nav-btn.active { background: rgba(124,92,252,0.2); color: var(--brand-mid); }
+  .nav-btn .nav-dot {
+    position: absolute; top: 8px; right: 8px; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%; border: 2px solid var(--bg2);
+  }
+  .sidebar-avatar {
+    margin-top: auto; width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #A98BFF, #7C5CFC);
+    display: flex; align-items: center; justify-content: center; font-weight: 700;
+    font-size: 14px; cursor: pointer;
+  }
+
+  /* Tab panels */
+  .main-content { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .tab-panel { display: none; flex: 1; overflow: hidden; flex-direction: column; }
+  .tab-panel.active { display: flex; }
+
+  .panel-header {
+    padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+  }
+  .panel-title { font-size: 1.1rem; font-weight: 700; }
+  .panel-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
+  .panel-body::-webkit-scrollbar { width: 4px; }
+  .panel-body::-webkit-scrollbar-track { background: transparent; }
+  .panel-body::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+
+  /* ─── MATCH PANEL ─── */
+  .match-filters {
+    display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .filter-chip {
+    padding: 7px 14px; border-radius: var(--radius-pill); font-size: 13px;
+    background: var(--card); border: 1px solid var(--border2);
+    cursor: pointer; transition: all 0.2s; color: var(--text2);
+  }
+  .filter-chip:hover { border-color: var(--border); color: var(--text); }
+  .filter-chip.active { background: rgba(124,92,252,0.2); border-color: rgba(124,92,252,0.5); color: var(--brand-mid); }
+
+  .matches-grid { display: grid; gap: 1rem; }
+
+  .match-card {
+    background: var(--card); border: 1px solid var(--border2);
+    border-radius: var(--radius); padding: 1.25rem;
+    display: flex; gap: 1rem; cursor: pointer;
+    transition: all 0.22s ease;
+  }
+  .match-card:hover { border-color: rgba(124,92,252,0.35); background: var(--card2); transform: translateY(-1px); }
+
+  .match-avatar {
+    width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 700; font-family: 'Syne', sans-serif;
+  }
+
+  .match-info { flex: 1; min-width: 0; }
+  .match-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  .match-vibe { font-size: 12px; color: var(--text3); margin-bottom: 8px; }
+  .match-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { padding: 3px 10px; border-radius: var(--radius-pill); font-size: 11px; background: var(--bg3); color: var(--text2); border: 1px solid var(--border2); }
+
+  .match-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; flex-shrink: 0; }
+  .compat-badge {
+    font-size: 13px; font-weight: 700; color: var(--accent3);
+    background: rgba(6,214,160,0.1); padding: 4px 10px; border-radius: var(--radius-pill);
+    border: 1px solid rgba(6,214,160,0.25);
+  }
+
+  /* ─── CHAT PANEL ─── */
+  .chat-layout { display: flex; flex: 1; overflow: hidden; }
+  .chat-list { width: 240px; border-right: 1px solid var(--border2); overflow-y: auto; flex-shrink: 0; }
+  .chat-list-item {
+    padding: 1rem 1.25rem; display: flex; gap: 10px; align-items: center;
+    cursor: pointer; border-bottom: 1px solid var(--border2); transition: background 0.15s;
+  }
+  .chat-list-item:hover { background: var(--card); }
+  .chat-list-item.active { background: rgba(124,92,252,0.1); }
+  .chat-list-avatar { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; }
+  .chat-list-info { flex: 1; min-width: 0; }
+  .chat-list-name { font-size: 13px; font-weight: 600; }
+  .chat-list-preview { font-size: 12px; color: var(--text3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-list-time { font-size: 11px; color: var(--text3); flex-shrink: 0; }
+  .unread-dot { width: 8px; height: 8px; background: var(--brand); border-radius: 50%; flex-shrink: 0; }
+
+  .chat-window { flex: 1; display: flex; flex-direction: column; }
+  .chat-top {
+    padding: 1rem 1.5rem; border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+  }
+  .chat-top-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; }
+  .chat-top-info .chat-name { font-size: 14px; font-weight: 600; }
+  .chat-top-info .chat-compat { font-size: 12px; color: var(--accent3); }
+
+  .ai-suggestion {
+    margin: 1rem 1.5rem; padding: 0.85rem 1.1rem;
+    background: rgba(124,92,252,0.08); border: 1px solid rgba(124,92,252,0.2);
+    border-radius: var(--radius-sm); display: flex; gap: 10px; align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .ai-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .ai-text { font-size: 13px; color: var(--text2); flex: 1; }
+  .ai-starters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .ai-starter-btn {
+    background: rgba(124,92,252,0.15); border: 1px solid rgba(124,92,252,0.3);
+    color: var(--brand-mid); font-size: 12px; padding: 5px 12px; border-radius: var(--radius-pill);
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s;
+  }
+  .ai-starter-btn:hover { background: rgba(124,92,252,0.25); }
+
+  .messages-area { flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 12px; }
+  .messages-area::-webkit-scrollbar { width: 4px; }
+  .messages-area::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+
+  .msg { display: flex; gap: 10px; max-width: 75%; }
+  .msg.outgoing { flex-direction: row-reverse; align-self: flex-end; }
+  .msg-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; align-self: flex-end; }
+  .msg-bubble {
+    padding: 0.65rem 1rem; border-radius: 18px; font-size: 14px; line-height: 1.5;
+    background: var(--card2); color: var(--text);
+  }
+  .msg.outgoing .msg-bubble { background: var(--brand); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.incoming .msg-bubble { border-bottom-left-radius: 4px; }
+
+  .chat-input-area {
+    padding: 1rem 1.5rem; border-top: 1px solid var(--border2);
+    display: flex; gap: 10px; align-items: flex-end; flex-shrink: 0;
+  }
+  .chat-input {
+    flex: 1; background: var(--card); border: 1.5px solid var(--border2);
+    border-radius: 22px; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 10px 16px; outline: none; resize: none;
+    transition: border-color 0.2s; max-height: 100px; min-height: 42px;
+  }
+  .chat-input:focus { border-color: rgba(124,92,252,0.4); }
+  .chat-input::placeholder { color: var(--text3); }
+  .send-btn {
+    width: 42px; height: 42px; border-radius: 50%; background: var(--brand);
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; transition: all 0.2s; flex-shrink: 0;
+  }
+  .send-btn:hover { background: #9370FF; transform: scale(1.05); }
+
+  /* ─── CONTENT FEED ─── */
+  .feed-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; background: var(--card); border-radius: var(--radius-sm); padding: 4px; }
+  .feed-tab {
+    flex: 1; padding: 8px; text-align: center; font-size: 13px;
+    cursor: pointer; border-radius: 8px; transition: all 0.2s; color: var(--text3);
+  }
+  .feed-tab.active { background: var(--brand); color: #fff; }
+
+  .feed-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .feed-card {
+    background: var(--card); border: 1px solid var(--border2);
+    border-radius: var(--radius); overflow: hidden; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .feed-card:hover { border-color: rgba(124,92,252,0.3); transform: translateY(-1px); }
+  .feed-accent-bar { height: 3px; }
+  .feed-body { padding: 1.25rem; }
+  .feed-category { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .feed-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.35; }
+  .feed-excerpt { font-size: 13px; color: var(--text2); margin-bottom: 1rem; }
+  .feed-meta { display: flex; align-items: center; justify-content: space-between; }
+  .feed-time { font-size: 12px; color: var(--text3); }
+  .feed-actions { display: flex; gap: 12px; }
+  .feed-action { font-size: 12px; color: var(--text3); cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.15s; }
+  .feed-action:hover { color: var(--brand-mid); }
+  .feed-action.liked { color: var(--accent); }
+
+  /* ─── ANON SHARE ─── */
+  .anon-hero {
+    text-align: center; padding: 2rem 1rem 1.5rem;
+    background: radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.15) 0%, transparent 70%);
+  }
+  .anon-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .anon-hero-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .anon-hero-sub { font-size: 14px; color: var(--text2); }
+
+  .anon-compose {
+    background: var(--card); border: 1px solid var(--border2);
+    border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem;
+  }
+  .anon-cats { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .anon-cat {
+    padding: 6px 14px; border-radius: var(--radius-pill); font-size: 12px;
+    border: 1px solid var(--border2); background: var(--bg3); color: var(--text2);
+    cursor: pointer; transition: all 0.15s;
+  }
+  .anon-cat.active { border-color: rgba(124,92,252,0.5); background: rgba(124,92,252,0.15); color: var(--brand-mid); }
+  .anon-textarea {
+    width: 100%; background: var(--bg3); border: 1.5px solid var(--border2);
+    border-radius: var(--radius-sm); color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 1rem; resize: none; height: 90px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .anon-textarea:focus { border-color: rgba(124,92,252,0.4); }
+  .anon-textarea::placeholder { color: var(--text3); }
+  .anon-compose-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .anon-notice { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 6px; }
+
+  .anon-posts { display: flex; flex-direction: column; gap: 1rem; }
+  .anon-post {
+    background: var(--card); border: 1px solid var(--border2);
+    border-radius: var(--radius); padding: 1.25rem;
+  }
+  .anon-post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.85rem; }
+  .anon-mask { font-size: 1.2rem; }
+  .anon-post-meta { }
+  .anon-handle { font-size: 13px; font-weight: 600; }
+  .anon-cat-badge {
+    font-size: 11px; padding: 3px 10px; border-radius: var(--radius-pill);
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .anon-post-text { font-size: 14px; color: var(--text); line-height: 1.6; margin-bottom: 1rem; }
+  .anon-reactions { display: flex; gap: 8px; }
+  .react-btn { font-size: 12px; color: var(--text3); cursor: pointer; padding: 4px 10px; border-radius: var(--radius-pill); background: var(--bg3); transition: all 0.15s; border: 1px solid transparent; }
+  .react-btn:hover { border-color: var(--border); color: var(--text); }
+
+  /* Utility */
+  .section-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 0.75rem; margin-top: 1.5rem; }
+  .section-label:first-child { margin-top: 0; }
+  .divider { height: 1px; background: var(--border2); margin: 1.5rem 0; }
+  .flex-gap { display: flex; align-items: center; gap: 8px; }
+  .spacer { flex: 1; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .chat-list { display: none; }
+    .traits-wrap { grid-template-columns: 1fr; }
+    .options-grid.cols-2 { grid-template-columns: 1fr; }
+    .landing-features { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══════════════════════════════ LANDING ═══════════════════════════════ -->
+  <div id="screen-landing" class="screen active">
+    <div class="logo-badge">✦ Muda Mendunia</div>
+    <div class="landing-title">Kenal diri.<br>Temukan orang<br>yang nyambung.</div>
+    <div class="landing-sub">Platform untuk Gen Z yang mau ngerti dirinya sendiri dan nemuin koneksi yang beneran relevan — bukan cuma kenalan.</div>
+    <div class="landing-actions">
+      <button class="btn btn-primary" onclick="goTo('onboarding')" style="font-size:16px;padding:16px 36px;">Mulai Sekarang ✦</button>
+      <button class="btn btn-ghost" onclick="skipToMain()">Lihat dulu →</button>
+    </div>
+    <div class="landing-features">
+      <div class="feat-pill"><div class="feat-dot" style="background:#7C5CFC"></div>Self Discovery</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#FF6B6B"></div>Friend Matching</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#06D6A0"></div>AI Chat Support</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#FFD166"></div>Personalized Feed</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#A98BFF"></div>Anonymous Sharing</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ ONBOARDING ═══════════════════════════════ -->
+  <div id="screen-onboarding" class="screen">
+    <div class="onboard-header">
+      <button class="btn btn-ghost btn-sm" onclick="goTo('landing')" style="padding:7px 14px">← Kembali</button>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:14%"></div></div>
+        <div class="progress-label" id="progressLabel">1 dari 7</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="skipToMain()">Skip</button>
+    </div>
+    <div class="onboard-body">
+
+      <!-- Step 1 -->
+      <div class="onboard-step active" data-step="1">
+        <div class="step-tag">Halo 👋</div>
+        <div class="step-title">Kamu biasanya ngapain waktu sendirian?</div>
+        <div class="step-sub">Pilih yang paling relate sama kamu sekarang.</div>
+        <div class="options-grid cols-2">
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🎧</span><div class="opt-text"><div class="opt-label">Dengerin musik</div><div class="opt-desc">playlist random / playlist playlist</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">📱</span><div class="opt-text"><div class="opt-label">Scroll media sosial</div><div class="opt-desc">tanpa tujuan yang jelas</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">📖</span><div class="opt-text"><div class="opt-label">Baca atau nulis</div><div class="opt-desc">buku, jurnal, atau artikel</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🎮</span><div class="opt-text"><div class="opt-label">Gaming / nonton</div><div class="opt-desc">satu episode terus jadi sepuluh</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🧠</span><div class="opt-text"><div class="opt-label">Overthinking</div><div class="opt-desc">mikirin hal-hal random aja</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🌿</span><div class="opt-text"><div class="opt-label">Healing & journaling</div><div class="opt-desc">introspeksi diri pelan-pelan</div></div><div class="opt-check"></div></div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="onboard-step" data-step="2">
+        <div class="step-tag">Minat ✦</div>
+        <div class="step-title">Hal apa yang bikin kamu excited?</div>
+        <div class="step-sub">Bisa pilih lebih dari satu.</div>
+        <div class="options-grid cols-2">
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">🎨</span><div class="opt-text"><div class="opt-label">Seni & Desain</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">💻</span><div class="opt-text"><div class="opt-label">Teknologi & AI</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">📚</span><div class="opt-text"><div class="opt-label">Self-Development</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">🎵</span><div class="opt-text"><div class="opt-label">Musik & Podcast</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">🌍</span><div class="opt-text"><div class="opt-label">Sosial & Isu Dunia</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">🏃</span><div class="opt-text"><div class="opt-label">Kesehatan & Olahraga</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">🍜</span><div class="opt-text"><div class="opt-label">Kuliner & Lifestyle</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+          <div class="option-card" onclick="selectOpt(this, true)"><span class="opt-emoji">✍️</span><div class="opt-text"><div class="opt-label">Nulis & Storytelling</div></div><div class="opt-check" style="border-radius:4px"></div></div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="onboard-step" data-step="3">
+        <div class="step-tag">Kepribadian ⚡</div>
+        <div class="step-title">Kamu lebih ke mana?</div>
+        <div class="step-sub">Geser slider sesuai yang kamu rasain.</div>
+        <div style="margin-top:1.5rem">
+          <div style="margin-bottom:1.5rem">
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:8px"><span>Introvert banget</span><span>Extrovert banget</span></div>
+            <input type="range" min="0" max="100" value="40" id="sl1" oninput="updateSlider(this,'sl1-out')">
+            <div class="slider-value" id="sl1-out">Mostly Introvert 🎧</div>
+          </div>
+          <div style="margin-bottom:1.5rem">
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:8px"><span>Sangat emosional</span><span>Sangat logis</span></div>
+            <input type="range" min="0" max="100" value="55" id="sl2" oninput="updateSlider(this,'sl2-out')">
+            <div class="slider-value" id="sl2-out">Seimbang 🧬</div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text2);margin-bottom:8px"><span>Suka rutinitas</span><span>Suka eksplorasi</span></div>
+            <input type="range" min="0" max="100" value="70" id="sl3" oninput="updateSlider(this,'sl3-out')">
+            <div class="slider-value" id="sl3-out">Explorer 🧭</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="onboard-step" data-step="4">
+        <div class="step-tag">Koneksi 🤝</div>
+        <div class="step-title">Teman ideal kamu kayak gimana?</div>
+        <div class="step-sub">Yang bikin kamu nyaman buat ngobrol panjang.</div>
+        <div class="options-grid">
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🪞</span><div class="opt-text"><div class="opt-label">Mirip sama aku</div><div class="opt-desc">pemikiran dan minat yang sejalan</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🧩</span><div class="opt-text"><div class="opt-label">Melengkapi aku</div><div class="opt-desc">beda perspektif, saling isi</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🌊</span><div class="opt-text"><div class="opt-label">Asik diajak diskusi</div><div class="opt-desc">suka ngobrol hal-hal dalam</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">☀️</span><div class="opt-text"><div class="opt-label">Positif & supportif</div><div class="opt-desc">yang bisa dengerin & hype up</div></div><div class="opt-check"></div></div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="onboard-step" data-step="5">
+        <div class="step-tag">Nilai Hidup 🌟</div>
+        <div class="step-title">Sekarang kamu lagi fokus ke apa?</div>
+        <div class="step-sub">Pilih yang paling menggambarkan fase hidup kamu.</div>
+        <div class="options-grid cols-2">
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🎯</span><div class="opt-text"><div class="opt-label">Nemuin tujuan hidup</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">📈</span><div class="opt-text"><div class="opt-label">Berkembang & belajar</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🤍</span><div class="opt-text"><div class="opt-label">Healing & menerima diri</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🚀</span><div class="opt-text"><div class="opt-label">Bangun sesuatu yang berarti</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">🌐</span><div class="opt-text"><div class="opt-label">Koneksi & komunitas</div></div><div class="opt-check"></div></div>
+          <div class="option-card" onclick="selectOpt(this)"><span class="opt-emoji">✨</span><div class="opt-text"><div class="opt-label">Nikmatin momen sekarang</div></div><div class="opt-check"></div></div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="onboard-step" data-step="6">
+        <div class="step-tag">Hampir selesai ✨</div>
+        <div class="step-title">Kalau kamu bisa tulis satu hal yang jarang orang tahu tentang kamu, apa itu?</div>
+        <div class="step-sub">Ini untuk membantu AI kenali kamu lebih dalam. Bebas jujur — ini aman.</div>
+        <textarea class="q-input" rows="5" placeholder="Contoh: Aku sebenernya ngerasa lebih nyaman ngobrol soal mimpi dan rasa takut daripada ngobrolin hal-hal kecil sehari-hari..."></textarea>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="onboard-step" data-step="7">
+        <div class="step-tag">Siap! 🎉</div>
+        <div class="step-title">Nama atau alias kamu apa?</div>
+        <div class="step-sub">Bisa nama asli atau nama panggilan — apapun yang bikin kamu nyaman.</div>
+        <input type="text" id="userName" placeholder="Nama kamu..." style="width:100%;background:var(--card);border:1.5px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:18px;padding:1rem 1.25rem;outline:none;transition:border-color 0.2s;margin-bottom:1.5rem" onfocus="this.style.borderColor='rgba(124,92,252,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
+        <div style="background:rgba(124,92,252,0.08);border:1px solid rgba(124,92,252,0.2);border-radius:var(--radius-sm);padding:1rem 1.25rem">
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">🔒 Data kamu diproses secara lokal dan tidak dibagikan ke siapapun tanpa izin kamu. Anonymous sharing tetap 100% anonim.</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="onboard-footer">
+      <button class="btn btn-ghost" id="prevBtn" onclick="prevStep()" style="display:none">← Sebelumnya</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Lanjut →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ RESULT ═══════════════════════════════ -->
+  <div id="screen-result" class="screen">
+    <div class="result-center">
+      <div class="profile-orb" id="resultOrb">🦋</div>
+      <div class="vibe-tag" id="resultVibe">The Deep Thinker</div>
+      <div class="result-name" id="resultName">Hai, <span id="displayName">Arya</span>!</div>
+      <div class="result-desc" id="resultDesc">Kamu adalah tipe yang punya kedalaman yang jarang orang sadarin langsung. Kamu mikir panjang sebelum bicara, dan ketika kamu bicara — itu bermakna.</div>
+      
+      <div class="traits-wrap">
+        <div class="trait-card"><div class="trait-label">Tipe Energi</div><div class="trait-val">Introvert Reflektif</div></div>
+        <div class="trait-card"><div class="trait-label">Kekuatan</div><div class="trait-val">Empati Mendalam</div></div>
+        <div class="trait-card"><div class="trait-label">Gaya Berpikir</div><div class="trait-val">Analitis + Kreatif</div></div>
+        <div class="trait-card"><div class="trait-label">Fokus Saat Ini</div><div class="trait-val">Self-Discovery</div></div>
+      </div>
+
+      <div class="section-label">Minat kamu</div>
+      <div class="interests-wrap">
+        <span class="interest-pill">🎨 Seni & Desain</span>
+        <span class="interest-pill">📚 Self-Dev</span>
+        <span class="interest-pill">🧠 Overthinking</span>
+        <span class="interest-pill">🎵 Musik</span>
+        <span class="interest-pill">✍️ Nulis</span>
+      </div>
+
+      <button class="btn btn-primary" onclick="goTo('main')" style="width:100%;padding:16px;font-size:16px;margin-top:1rem">Temukan Temanku ✦</button>
+      <div style="font-size:13px;color:var(--text3);margin-top:1rem">Profil kamu bisa diedit kapan saja</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ MAIN APP ═══════════════════════════════ -->
+  <div id="screen-main" class="screen">
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">✦</div>
+      <button class="nav-btn active" onclick="switchTab('match')" id="nav-match" title="Friend Match">👥</button>
+      <button class="nav-btn" onclick="switchTab('chat')" id="nav-chat" title="Chat">💬<div class="nav-dot"></div></button>
+      <button class="nav-btn" onclick="switchTab('feed')" id="nav-feed" title="Feed">✨</button>
+      <button class="nav-btn" onclick="switchTab('anon')" id="nav-anon" title="Safe Space">🌙</button>
+      <div class="sidebar-avatar" title="Profil kamu">A</div>
+    </div>
+
+    <!-- Content -->
+    <div class="main-content">
+
+      <!-- ── MATCH TAB ── -->
+      <div class="tab-panel active" id="tab-match">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Temukan Teman ✦</div>
+            <div style="font-size:12px;color:var(--text3)">Cocok berdasarkan kepribadian & minat kamu</div>
+          </div>
+          <button class="btn btn-ghost btn-sm">Filter ⊞</button>
+        </div>
+        <div class="panel-body">
+          <div class="match-filters">
+            <div class="filter-chip active">Semua</div>
+            <div class="filter-chip">Minat Sama</div>
+            <div class="filter-chip">Kepribadian Serupa</div>
+            <div class="filter-chip">Online Sekarang</div>
+          </div>
+          <div class="section-label">Match terbaik untuk kamu</div>
+          <div class="matches-grid">
+            <div class="match-card" onclick="openChat('Reina','🌸',['Self-Dev','Nulis','Introvert'])">
+              <div class="match-avatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+              <div class="match-info">
+                <div class="match-name">Reina</div>
+                <div class="match-vibe">The Quiet Creator · Jakarta</div>
+                <div class="match-tags">
+                  <span class="tag">✍️ Nulis</span><span class="tag">🎨 Seni</span><span class="tag">Introvert</span>
+                </div>
+              </div>
+              <div class="match-right">
+                <div class="compat-badge">94%</div>
+                <button class="btn btn-ghost btn-sm" style="font-size:12px">Chat →</button>
+              </div>
+            </div>
+            <div class="match-card" onclick="openChat('Dimas','🌊',['Teknologi','Musik','Analitis'])">
+              <div class="match-avatar" style="background:rgba(124,92,252,0.15);color:#A98BFF">D</div>
+              <div class="match-info">
+                <div class="match-name">Dimas</div>
+                <div class="match-vibe">The Curious Mind · Bandung</div>
+                <div class="match-tags">
+                  <span class="tag">💻 Tech</span><span class="tag">🎵 Musik</span><span class="tag">Analitis</span>
+                </div>
+              </div>
+              <div class="match-right">
+                <div class="compat-badge">89%</div>
+                <button class="btn btn-ghost btn-sm" style="font-size:12px">Chat →</button>
+              </div>
+            </div>
+            <div class="match-card" onclick="openChat('Kirana','🌿',['Self-Dev','Healing','Empatik'])">
+              <div class="match-avatar" style="background:rgba(6,214,160,0.15);color:#06D6A0">K</div>
+              <div class="match-info">
+                <div class="match-name">Kirana</div>
+                <div class="match-vibe">The Gentle Thinker · Yogyakarta</div>
+                <div class="match-tags">
+                  <span class="tag">🤍 Healing</span><span class="tag">📚 Self-Dev</span><span class="tag">Empatik</span>
+                </div>
+              </div>
+              <div class="match-right">
+                <div class="compat-badge">87%</div>
+                <button class="btn btn-ghost btn-sm" style="font-size:12px">Chat →</button>
+              </div>
+            </div>
+            <div class="match-card" onclick="openChat('Faiz','🔥',['Teknologi','Sosial','Explorer'])">
+              <div class="match-avatar" style="background:rgba(255,209,102,0.15);color:#FFD166">F</div>
+              <div class="match-info">
+                <div class="match-name">Faiz</div>
+                <div class="match-vibe">The Visionary · Surabaya</div>
+                <div class="match-tags">
+                  <span class="tag">🌍 Sosial</span><span class="tag">🚀 Startup</span><span class="tag">Explorer</span>
+                </div>
+              </div>
+              <div class="match-right">
+                <div class="compat-badge">82%</div>
+                <button class="btn btn-ghost btn-sm" style="font-size:12px">Chat →</button>
+              </div>
+            </div>
+            <div class="match-card" onclick="openChat('Sari','🌸',['Musik','Seni','Kreatif'])">
+              <div class="match-avatar" style="background:rgba(169,139,255,0.2);color:#A98BFF">S</div>
+              <div class="match-info">
+                <div class="match-name">Sari</div>
+                <div class="match-vibe">The Creative Soul · Malang</div>
+                <div class="match-tags">
+                  <span class="tag">🎵 Musik</span><span class="tag">🎨 Kreatif</span><span class="tag">Ambivert</span>
+                </div>
+              </div>
+              <div class="match-right">
+                <div class="compat-badge">79%</div>
+                <button class="btn btn-ghost btn-sm" style="font-size:12px">Chat →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CHAT TAB ── -->
+      <div class="tab-panel" id="tab-chat">
+        <div class="chat-layout">
+          <div class="chat-list">
+            <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border2)">
+              <input type="text" placeholder="Cari percakapan..." style="width:100%;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--radius-pill);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 14px;outline:none">
+            </div>
+            <div class="chat-list-item active" onclick="setActiveChat(this,'Reina','R','rgba(255,107,107,0.15)','#FF6B6B','94%')">
+              <div class="chat-list-avatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+              <div class="chat-list-info">
+                <div class="chat-list-name">Reina</div>
+                <div class="chat-list-preview">Haha iya beneran relatable 😅</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <div class="chat-list-time">5m</div>
+                <div class="unread-dot"></div>
+              </div>
+            </div>
+            <div class="chat-list-item" onclick="setActiveChat(this,'Dimas','D','rgba(124,92,252,0.15)','#A98BFF','89%')">
+              <div class="chat-list-avatar" style="background:rgba(124,92,252,0.15);color:#A98BFF">D</div>
+              <div class="chat-list-info">
+                <div class="chat-list-name">Dimas</div>
+                <div class="chat-list-preview">Eh kamu tau ga soal...</div>
+              </div>
+              <div class="chat-list-time">2j</div>
+            </div>
+            <div class="chat-list-item" onclick="setActiveChat(this,'Kirana','K','rgba(6,214,160,0.15)','#06D6A0','87%')">
+              <div class="chat-list-avatar" style="background:rgba(6,214,160,0.15);color:#06D6A0">K</div>
+              <div class="chat-list-info">
+                <div class="chat-list-name">Kirana</div>
+                <div class="chat-list-preview">Makasih ya udah sharing 🤍</div>
+              </div>
+              <div class="chat-list-time">1h</div>
+            </div>
+          </div>
+          <div class="chat-window">
+            <div class="chat-top">
+              <div class="chat-top-avatar" id="chatAvatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+              <div class="chat-top-info">
+                <div class="chat-name" id="chatName">Reina</div>
+                <div class="chat-compat" id="chatCompat">✦ 94% kecocokan</div>
+              </div>
+              <div class="spacer"></div>
+              <button class="btn btn-ghost btn-sm">ℹ Profil</button>
+            </div>
+            <div class="ai-suggestion">
+              <div class="ai-icon">🤖</div>
+              <div>
+                <div class="ai-text">AI menyarankan pembuka percakapan berdasarkan profil kalian:</div>
+                <div class="ai-starters">
+                  <button class="ai-starter-btn" onclick="sendStarter(this)">Kalau kamu bisa tinggal di satu genre buku selamanya, genre apa?</button>
+                  <button class="ai-starter-btn" onclick="sendStarter(this)">Lagi obsesi sama apa sekarang?</button>
+                  <button class="ai-starter-btn" onclick="sendStarter(this)">Musik apa yang kamu dengerin waktu nulis?</button>
+                </div>
+              </div>
+            </div>
+            <div class="messages-area" id="messagesArea">
+              <div class="msg incoming">
+                <div class="msg-avatar" id="msgAvatarInc" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+                <div class="msg-bubble">Hii! Seneng banget nemuin kamu di sini. Kayaknya kita banyak kesamaan ya 👀</div>
+              </div>
+              <div class="msg outgoing">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div>
+                <div class="msg-bubble">Iya haha, aku juga surprised. Kamu suka nulis juga ternyata!</div>
+              </div>
+              <div class="msg incoming">
+                <div class="msg-avatar" id="msgAvatarInc2" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+                <div class="msg-bubble">Iya, nulis itu kayak cara aku ngolah perasaan yang susah diucapin. Kamu juga kayak gitu?</div>
+              </div>
+              <div class="msg outgoing">
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div>
+                <div class="msg-bubble">Persis banget! Haha iya beneran relatable 😅</div>
+              </div>
+            </div>
+            <div class="chat-input-area">
+              <textarea class="chat-input" id="chatInput" placeholder="Tulis pesan..." rows="1" onkeydown="handleEnter(event)"></textarea>
+              <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FEED TAB ── -->
+      <div class="tab-panel" id="tab-feed">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Untuk Kamu ✨</div>
+            <div style="font-size:12px;color:var(--text3)">Konten yang dipersonalisasi sesuai profilmu</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="feed-tabs">
+            <div class="feed-tab active">Semua</div>
+            <div class="feed-tab">Self-Dev</div>
+            <div class="feed-tab">Motivasi</div>
+            <div class="feed-tab">Pemikiran</div>
+          </div>
+          <div class="feed-cards">
+            <div class="feed-card">
+              <div class="feed-accent-bar" style="background:var(--brand)"></div>
+              <div class="feed-body">
+                <div class="feed-category" style="color:var(--brand-mid)">Self-Development</div>
+                <div class="feed-title">Kenapa kamu overthink bukan karena lemah, tapi karena kamu terlalu peduli</div>
+                <div class="feed-excerpt">Overthinking seringnya dianggap kelemahan. Padahal itu tanda bahwa kamu punya kapasitas empati dan kesadaran diri yang lebih dari rata-rata...</div>
+                <div class="feed-meta">
+                  <div class="feed-time">4 menit baca</div>
+                  <div class="feed-actions">
+                    <div class="feed-action" onclick="toggleLike(this)">♡ 128</div>
+                    <div class="feed-action">↗ Simpan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feed-card">
+              <div class="feed-accent-bar" style="background:var(--accent3)"></div>
+              <div class="feed-body">
+                <div class="feed-category" style="color:var(--accent3)">Pemikiran</div>
+                <div class="feed-title">Kamu tidak harus selalu "produktif" — diam pun adalah bentuk kerja keras</div>
+                <div class="feed-excerpt">Generasi kita hidup di tekanan untuk terus bergerak. Tapi ada hal yang sering kita lupa: istirahat adalah bagian dari proses, bukan jeda darinya...</div>
+                <div class="feed-meta">
+                  <div class="feed-time">3 menit baca</div>
+                  <div class="feed-actions">
+                    <div class="feed-action" onclick="toggleLike(this)">♡ 94</div>
+                    <div class="feed-action">↗ Simpan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feed-card">
+              <div class="feed-accent-bar" style="background:var(--accent2)"></div>
+              <div class="feed-body">
+                <div class="feed-category" style="color:var(--accent2)">Motivasi</div>
+                <div class="feed-title">5 cara nulis jurnal yang beneran bikin kamu lebih ngerti diri sendiri</div>
+                <div class="feed-excerpt">Bukan soal nulis yang bagus. Tapi soal nulis yang jujur. Ini metode yang terbukti bantu kamu ketemu sama diri sendiri yang lebih asli...</div>
+                <div class="feed-meta">
+                  <div class="feed-time">6 menit baca</div>
+                  <div class="feed-actions">
+                    <div class="feed-action liked">♥ 217</div>
+                    <div class="feed-action">↗ Simpan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feed-card">
+              <div class="feed-accent-bar" style="background:var(--accent)"></div>
+              <div class="feed-body">
+                <div class="feed-category" style="color:var(--accent)">Koneksi</div>
+                <div class="feed-title">Tanda kamu sudah menemukan orang yang beneran nyambung sama kamu</div>
+                <div class="feed-excerpt">Tidak selalu soal banyaknya topik yang sama. Kadang koneksi yang dalam terasa dari cara kamu merasa aman untuk diam bersama seseorang...</div>
+                <div class="feed-meta">
+                  <div class="feed-time">5 menit baca</div>
+                  <div class="feed-actions">
+                    <div class="feed-action" onclick="toggleLike(this)">♡ 183</div>
+                    <div class="feed-action">↗ Simpan</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ANON TAB ── -->
+      <div class="tab-panel" id="tab-anon">
+        <div class="panel-header">
+          <div class="panel-title">Safe Space 🌙</div>
+          <div style="font-size:12px;color:var(--text3)">100% anonim. Kamu aman di sini.</div>
+        </div>
+        <div class="panel-body">
+          <div class="anon-hero">
+            <div class="anon-hero-icon">🌙</div>
+            <div class="anon-hero-title">Ruang aman untuk berbagi</div>
+            <div class="anon-hero-sub">Tidak ada nama asli. Tidak ada tekanan. Hanya kata-kata.</div>
+          </div>
+
+          <div class="anon-compose">
+            <div style="font-size:13px;color:var(--text2);margin-bottom:0.75rem;font-weight:500">Pilih kategori:</div>
+            <div class="anon-cats">
+              <div class="anon-cat active" onclick="selectCat(this)">💭 Pikiran Acak</div>
+              <div class="anon-cat" onclick="selectCat(this)">🤍 Mental & Perasaan</div>
+              <div class="anon-cat" onclick="selectCat(this)">💼 Karir & Masa Depan</div>
+              <div class="anon-cat" onclick="selectCat(this)">💔 Hubungan</div>
+            </div>
+            <textarea class="anon-textarea" placeholder="Tulis apa yang ada di pikiranmu sekarang..."></textarea>
+            <div class="anon-compose-footer">
+              <div class="anon-notice">🔒 Identitasmu tidak akan terungkap</div>
+              <button class="btn btn-primary btn-sm" onclick="postAnon()">Bagikan ✦</button>
+            </div>
+          </div>
+
+          <div class="section-label">Suara dari komunitas</div>
+          <div class="anon-posts">
+            <div class="anon-post">
+              <div class="anon-post-header">
+                <div class="anon-mask">🎭</div>
+                <div class="anon-post-meta">
+                  <div class="anon-handle">anonim</div>
+                </div>
+                <div class="spacer"></div>
+                <div class="anon-cat-badge" style="background:rgba(124,92,252,0.15);color:var(--brand-mid)">Mental & Perasaan</div>
+              </div>
+              <div class="anon-post-text">Kadang aku ngerasa kayak ada dua versi diriku. Yang satu kelihatan di luar — santai, mandiri, "oke-oke aja". Tapi di dalem, ada yang capek dan pengen didengar. Nggak tau cara ngomongnya gimana.</div>
+              <div class="anon-reactions">
+                <div class="react-btn" onclick="toggleReact(this)">🤍 47</div>
+                <div class="react-btn" onclick="toggleReact(this)">💙 Relate</div>
+                <div class="react-btn">💬 5 komentar</div>
+              </div>
+            </div>
+            <div class="anon-post">
+              <div class="anon-post-header">
+                <div class="anon-mask">🌊</div>
+                <div class="anon-post-meta">
+                  <div class="anon-handle">anonim</div>
+                </div>
+                <div class="spacer"></div>
+                <div class="anon-cat-badge" style="background:rgba(255,209,102,0.12);color:var(--accent2)">Karir & Masa Depan</div>
+              </div>
+              <div class="anon-post-text">Lagi di fase yang bingung banget soal karir. Semua orang kayak udah tau mau jadi apa. Aku masih di sini nanya-nanya ke diri sendiri, "sebenernya aku mau apa?"</div>
+              <div class="anon-reactions">
+                <div class="react-btn" onclick="toggleReact(this)">🤍 62</div>
+                <div class="react-btn" onclick="toggleReact(this)">💙 Relate</div>
+                <div class="react-btn">💬 12 komentar</div>
+              </div>
+            </div>
+            <div class="anon-post">
+              <div class="anon-post-header">
+                <div class="anon-mask">🌸</div>
+                <div class="anon-post-meta">
+                  <div class="anon-handle">anonim</div>
+                </div>
+                <div class="spacer"></div>
+                <div class="anon-cat-badge" style="background:rgba(255,107,107,0.12);color:var(--accent)">Hubungan</div>
+              </div>
+              <div class="anon-post-text">Aku baru sadar kalau selama ini aku lebih sering dengerin orang lain daripada didengar. Bukan karena nggak ada yang peduli, tapi kayak aku nggak mau ngebebanin siapapun. Dan itu lelah.</div>
+              <div class="anon-reactions">
+                <div class="react-btn" onclick="toggleReact(this)">🤍 89</div>
+                <div class="react-btn" onclick="toggleReact(this)">💙 Relate</div>
+                <div class="react-btn">💬 23 komentar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 7;
+
+  function goTo(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+  }
+
+  function skipToMain() { goTo('result'); }
+
+  function updateProgress() {
+    const pct = Math.round((currentStep / totalSteps) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = currentStep + ' dari ' + totalSteps;
+    document.getElementById('prevBtn').style.display = currentStep > 1 ? 'inline-flex' : 'none';
+    document.getElementById('nextBtn').textContent = currentStep === totalSteps ? 'Lihat Hasil ✦' : 'Lanjut →';
+  }
+
+  function nextStep() {
+    if (currentStep === totalSteps) {
+      const nameInput = document.getElementById('userName');
+      const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : 'Arya';
+      document.getElementById('displayName').textContent = name;
+      document.querySelector('.sidebar-avatar').textContent = name.charAt(0).toUpperCase();
+      goTo('result');
+      return;
+    }
+    document.querySelector('.onboard-step[data-step="' + currentStep + '"]').classList.remove('active');
+    currentStep++;
+    document.querySelector('.onboard-step[data-step="' + currentStep + '"]').classList.add('active');
+    updateProgress();
+  }
+
+  function prevStep() {
+    if (currentStep <= 1) return;
+    document.querySelector('.onboard-step[data-step="' + currentStep + '"]').classList.remove('active');
+    currentStep--;
+    document.querySelector('.onboard-step[data-step="' + currentStep + '"]').classList.add('active');
+    updateProgress();
+  }
+
+  function selectOpt(el, multi) {
+    if (!multi) {
+      el.closest('.options-grid').querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    }
+    el.classList.toggle('selected');
+  }
+
+  function updateSlider(el, outId) {
+    const v = parseInt(el.value);
+    const id = el.id;
+    const labels = {
+      sl1: v < 30 ? 'Introvert 🎧' : v < 60 ? 'Mostly Introvert 🎧' : v < 80 ? 'Ambivert 🌗' : 'Extrovert 🎉',
+      sl2: v < 30 ? 'Sangat Emosional 💫' : v < 60 ? 'Seimbang 🧬' : v < 80 ? 'Cenderung Logis 🧠' : 'Sangat Logis 🔬',
+      sl3: v < 30 ? 'Rutinitas 📅' : v < 60 ? 'Fleksibel 🌀' : v < 80 ? 'Explorer 🧭' : 'Petualang 🚀'
+    };
+    document.getElementById(outId).textContent = labels[id];
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+  }
+
+  function openChat(name, emoji, tags) {
+    switchTab('chat');
+  }
+
+  function setActiveChat(el, name, initial, bg, color, compat) {
+    document.querySelectorAll('.chat-list-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('chatAvatar').textContent = initial;
+    document.getElementById('chatAvatar').style.background = bg;
+    document.getElementById('chatAvatar').style.color = color;
+    document.getElementById('chatName').textContent = name;
+    document.getElementById('chatCompat').textContent = '✦ ' + compat + ' kecocokan';
+    // update incoming avatars
+    document.querySelectorAll('#msgAvatarInc, #msgAvatarInc2').forEach(a => {
+      a.textContent = initial; a.style.background = bg; a.style.color = color;
+    });
+  }
+
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const area = document.getElementById('messagesArea');
+    const msg = document.createElement('div');
+    msg.className = 'msg outgoing';
+    msg.innerHTML = `<div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div><div class="msg-bubble">${text}</div>`;
+    area.appendChild(msg);
+    input.value = '';
+    area.scrollTop = area.scrollHeight;
+
+    // Simulate reply
+    setTimeout(() => {
+      const replies = [
+        'Iya, aku ngerti banget perasaan itu! 🤍',
+        'Haha beneran relate sama yang kamu bilang.',
+        'Wah menarik! Gimana kamu bisa sampai di pandangan itu?',
+        'Aku juga ngerasain hal yang sama sebenarnya...',
+        'Makanya kita nyambung kayaknya 😄'
+      ];
+      const reply = replies[Math.floor(Math.random() * replies.length)];
+      const chatAvatar = document.getElementById('chatAvatar');
+      const replyMsg = document.createElement('div');
+      replyMsg.className = 'msg incoming';
+      replyMsg.innerHTML = `<div class="msg-avatar" style="background:${chatAvatar.style.background};color:${chatAvatar.style.color}">${chatAvatar.textContent}</div><div class="msg-bubble">${reply}</div>`;
+      area.appendChild(replyMsg);
+      area.scrollTop = area.scrollHeight;
+    }, 1200);
+  }
+
+  function handleEnter(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  function sendStarter(btn) {
+    document.getElementById('chatInput').value = btn.textContent;
+    sendMessage();
+  }
+
+  function toggleLike(el) {
+    const isLiked = el.classList.toggle('liked');
+    const num = parseInt(el.textContent.replace(/[^0-9]/g, ''));
+    el.textContent = (isLiked ? '♥ ' : '♡ ') + (isLiked ? num + 1 : num - 1);
+  }
+
+  function toggleReact(el) {
+    el.style.borderColor = el.style.borderColor ? '' : 'var(--border)';
+    el.style.color = el.style.color === 'var(--brand-mid)' ? '' : 'var(--brand-mid)';
+  }
+
+  function selectCat(el) {
+    el.closest('.anon-cats').querySelectorAll('.anon-cat').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function postAnon() {
+    const ta = document.querySelector('.anon-textarea');
+    if (!ta.value.trim()) return;
+    ta.value = '';
+    const posts = document.querySelector('.anon-posts');
+    const post = document.createElement('div');
+    post.className = 'anon-post';
+    post.style.borderColor = 'rgba(124,92,252,0.4)';
+    post.innerHTML = `<div class="anon-post-header"><div class="anon-mask">✨</div><div class="anon-post-meta"><div class="anon-handle">kamu (anonim)</div></div><div class="spacer"></div><div class="anon-cat-badge" style="background:rgba(124,92,252,0.15);color:var(--brand-mid)">Baru saja</div></div><div class="anon-post-text">Pesanmu sudah dibagikan secara anonim. Komunitas mendengar kamu. 🤍</div><div class="anon-reactions"><div class="react-btn">🤍 0</div></div>`;
+    posts.insertBefore(post, posts.firstChild);
+    setTimeout(() => post.style.borderColor = '', 3000);
+  }
+</script>
+</body>
+</html>
