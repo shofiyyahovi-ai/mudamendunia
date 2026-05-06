@@ -8,22 +8,22 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   
   :root {
-    --brand: #7C5CFC;
-    --brand-light: #EDE8FF;
-    --brand-mid: #A98BFF;
-    --accent: #FF6B6B;
-    --accent2: #FFD166;
-    --accent3: #06D6A0;
-    --bg: #0D0B14;
-    --bg2: #160E2A;
-    --bg3: #1E1535;
-    --card: #1A1230;
-    --card2: #231844;
-    --border: rgba(124,92,252,0.18);
-    --border2: rgba(255,255,255,0.06);
-    --text: #F2EEFF;
-    --text2: #A899CC;
-    --text3: #6B5A96;
+    --brand: #5B8DEF;
+    --brand-light: #EBF2FF;
+    --brand-mid: #5B8DEF;
+    --accent: #FF9E40;
+    --accent2: #FFC53D;
+    --accent3: #8B6EFF;
+    --bg: #0F172A;
+    --bg2: #1E2D4F;
+    --bg3: #162040;
+    --card: #1A2848;
+    --card2: #1F3158;
+    --border: rgba(91,141,239,0.22);
+    --border2: rgba(255,255,255,0.07);
+    --text: #F0F6FF;
+    --text2: #93B0D4;
+    --text3: #4A6A9A;
     --radius: 16px;
     --radius-sm: 10px;
     --radius-pill: 100px;
@@ -50,8 +50,8 @@
 
   /* ─── LANDING SCREEN ─── */
   #screen-landing {
-    background: radial-gradient(ellipse at 30% 20%, rgba(124,92,252,0.25) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 80%, rgba(255,107,107,0.12) 0%, transparent 50%),
+    background: radial-gradient(ellipse at 30% 20%, rgba(91,141,239,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(255,158,64,0.12) 0%, transparent 50%),
                 var(--bg);
     align-items: center; justify-content: center; text-align: center; padding: 3rem 2rem;
     min-height: 100vh;
@@ -59,7 +59,7 @@
 
   .logo-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(124,92,252,0.15); border: 1px solid var(--border);
+    background: rgba(91,141,239,0.15); border: 1px solid var(--border);
     padding: 8px 18px; border-radius: var(--radius-pill);
     font-size: 13px; color: var(--brand-mid); font-weight: 500;
     margin-bottom: 2.5rem; letter-spacing: 0.02em;
@@ -68,7 +68,7 @@
   .landing-title {
     font-size: clamp(2.8rem, 7vw, 5rem);
     font-weight: 800; line-height: 1.08;
-    background: linear-gradient(135deg, #F2EEFF 0%, #A98BFF 50%, #7C5CFC 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #8BB8FF 40%, #FF9E40 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; margin-bottom: 1.25rem;
   }
@@ -87,16 +87,16 @@
   }
   .btn-primary {
     background: var(--brand); color: #fff;
-    box-shadow: 0 8px 32px rgba(124,92,252,0.4);
+    box-shadow: 0 8px 32px rgba(91,141,239,0.35);
   }
-  .btn-primary:hover { background: #9370FF; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,92,252,0.5); }
+  .btn-primary:hover { background: #4E82E0; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(91,141,239,0.5); }
   .btn-ghost {
     background: transparent; color: var(--text2);
     border: 1px solid var(--border2);
   }
   .btn-ghost:hover { background: var(--card); color: var(--text); }
   .btn-sm { padding: 9px 18px; font-size: 13px; }
-  .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 6px 24px rgba(255,107,107,0.35); }
+  .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 6px 24px rgba(255,158,64,0.35); }
   .btn-accent:hover { transform: translateY(-1px); }
 
   .landing-actions { display: flex; flex-direction: column; gap: 1rem; align-items: center; }
@@ -112,7 +112,7 @@
 
   /* ─── ONBOARDING ─── */
   #screen-onboarding {
-    background: radial-gradient(ellipse at 70% 10%, rgba(124,92,252,0.2) 0%, transparent 55%),
+    background: radial-gradient(ellipse at 70% 10%, rgba(91,141,239,0.2) 0%, transparent 55%),
                 var(--bg);
     min-height: 100vh;
   }
@@ -147,8 +147,8 @@
     cursor: pointer; transition: all 0.2s ease;
     display: flex; align-items: center; gap: 12px;
   }
-  .option-card:hover { border-color: rgba(124,92,252,0.4); background: var(--card2); }
-  .option-card.selected { border-color: var(--brand); background: rgba(124,92,252,0.12); }
+  .option-card:hover { border-color: rgba(91,141,239,0.4); background: var(--card2); }
+  .option-card.selected { border-color: var(--brand); background: rgba(91,141,239,0.12); }
   .option-card.selected .opt-check { background: var(--brand); border-color: var(--brand); }
   .option-card.selected .opt-check::after { display: block; }
   .opt-check {
@@ -175,7 +175,7 @@
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
     background: var(--brand); cursor: pointer; border: 3px solid var(--bg);
-    box-shadow: 0 0 0 2px rgba(124,92,252,0.4);
+    box-shadow: 0 0 0 2px rgba(91,141,239,0.4);
   }
   .slider-value { text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--brand-mid); margin-bottom: 0.5rem; }
 
@@ -186,28 +186,28 @@
     font-size: 15px; padding: 1rem 1.25rem; resize: none; outline: none;
     transition: border-color 0.2s;
   }
-  textarea.q-input:focus { border-color: rgba(124,92,252,0.5); }
+  textarea.q-input:focus { border-color: rgba(91,141,239,0.5); }
   textarea.q-input::placeholder { color: var(--text3); }
 
   .onboard-footer { padding: 1.5rem 2rem; display: flex; gap: 1rem; justify-content: flex-end; border-top: 1px solid var(--border2); }
 
   /* ─── RESULT SCREEN ─── */
   #screen-result {
-    background: radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.3) 0%, transparent 60%),
+    background: radial-gradient(ellipse at 50% 0%, rgba(91,141,239,0.3) 0%, transparent 60%),
                 var(--bg); min-height: 100vh; padding: 3rem 2rem;
   }
   .result-center { max-width: 520px; margin: 0 auto; text-align: center; }
   .profile-orb {
     width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, var(--brand) 0%, #FF6B6B 100%);
+    background: linear-gradient(135deg, #5B8DEF 0%, #FF9E40 100%);
     display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; box-shadow: 0 0 60px rgba(124,92,252,0.4);
+    font-size: 3rem; box-shadow: 0 0 60px rgba(91,141,239,0.4);
     animation: pulse-orb 3s ease-in-out infinite;
   }
-  @keyframes pulse-orb { 0%, 100% { box-shadow: 0 0 40px rgba(124,92,252,0.4); } 50% { box-shadow: 0 0 80px rgba(124,92,252,0.6); } }
+  @keyframes pulse-orb { 0%, 100% { box-shadow: 0 0 40px rgba(91,141,239,0.35); } 50% { box-shadow: 0 0 80px rgba(91,141,239,0.5); } }
   .vibe-tag {
-    display: inline-block; background: rgba(124,92,252,0.2); color: var(--brand-mid);
-    border: 1px solid rgba(124,92,252,0.4); padding: 6px 16px; border-radius: var(--radius-pill);
+    display: inline-block; background: rgba(91,141,239,0.2); color: var(--brand-mid);
+    border: 1px solid rgba(91,141,239,0.4); padding: 6px 16px; border-radius: var(--radius-pill);
     font-size: 13px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1rem;
   }
   .result-name { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.75rem; }
@@ -238,7 +238,7 @@
   }
   .sidebar-logo {
     width: 40px; height: 40px; border-radius: 12px;
-    background: linear-gradient(135deg, var(--brand), #FF6B6B);
+    background: linear-gradient(135deg, var(--brand), #FF9E40);
     display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
     font-size: 1.2rem;
   }
@@ -249,14 +249,14 @@
     font-size: 1.2rem; border: none; background: transparent; color: var(--text3);
   }
   .nav-btn:hover { background: var(--card); color: var(--text2); }
-  .nav-btn.active { background: rgba(124,92,252,0.2); color: var(--brand-mid); }
+  .nav-btn.active { background: rgba(91,141,239,0.2); color: var(--brand-mid); }
   .nav-btn .nav-dot {
     position: absolute; top: 8px; right: 8px; width: 8px; height: 8px;
     background: var(--accent); border-radius: 50%; border: 2px solid var(--bg2);
   }
   .sidebar-avatar {
     margin-top: auto; width: 40px; height: 40px; border-radius: 50%;
-    background: linear-gradient(135deg, #A98BFF, #7C5CFC);
+    background: linear-gradient(135deg, #8BB8FF, #5B8DEF);
     display: flex; align-items: center; justify-content: center; font-weight: 700;
     font-size: 14px; cursor: pointer;
   }
@@ -286,7 +286,7 @@
     cursor: pointer; transition: all 0.2s; color: var(--text2);
   }
   .filter-chip:hover { border-color: var(--border); color: var(--text); }
-  .filter-chip.active { background: rgba(124,92,252,0.2); border-color: rgba(124,92,252,0.5); color: var(--brand-mid); }
+  .filter-chip.active { background: rgba(91,141,239,0.2); border-color: rgba(91,141,239,0.5); color: var(--brand-mid); }
 
   .matches-grid { display: grid; gap: 1rem; }
 
@@ -296,7 +296,7 @@
     display: flex; gap: 1rem; cursor: pointer;
     transition: all 0.22s ease;
   }
-  .match-card:hover { border-color: rgba(124,92,252,0.35); background: var(--card2); transform: translateY(-1px); }
+  .match-card:hover { border-color: rgba(91,141,239,0.35); background: var(--card2); transform: translateY(-1px); }
 
   .match-avatar {
     width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
@@ -313,8 +313,8 @@
   .match-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; flex-shrink: 0; }
   .compat-badge {
     font-size: 13px; font-weight: 700; color: var(--accent3);
-    background: rgba(6,214,160,0.1); padding: 4px 10px; border-radius: var(--radius-pill);
-    border: 1px solid rgba(6,214,160,0.25);
+    background: rgba(139,110,255,0.1); padding: 4px 10px; border-radius: var(--radius-pill);
+    border: 1px solid rgba(139,110,255,0.25);
   }
 
   /* ─── CHAT PANEL ─── */
@@ -325,7 +325,7 @@
     cursor: pointer; border-bottom: 1px solid var(--border2); transition: background 0.15s;
   }
   .chat-list-item:hover { background: var(--card); }
-  .chat-list-item.active { background: rgba(124,92,252,0.1); }
+  .chat-list-item.active { background: rgba(91,141,239,0.1); }
   .chat-list-avatar { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; }
   .chat-list-info { flex: 1; min-width: 0; }
   .chat-list-name { font-size: 13px; font-weight: 600; }
@@ -344,7 +344,7 @@
 
   .ai-suggestion {
     margin: 1rem 1.5rem; padding: 0.85rem 1.1rem;
-    background: rgba(124,92,252,0.08); border: 1px solid rgba(124,92,252,0.2);
+    background: rgba(91,141,239,0.08); border: 1px solid rgba(91,141,239,0.2);
     border-radius: var(--radius-sm); display: flex; gap: 10px; align-items: flex-start;
     flex-shrink: 0;
   }
@@ -352,11 +352,11 @@
   .ai-text { font-size: 13px; color: var(--text2); flex: 1; }
   .ai-starters { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
   .ai-starter-btn {
-    background: rgba(124,92,252,0.15); border: 1px solid rgba(124,92,252,0.3);
+    background: rgba(91,141,239,0.15); border: 1px solid rgba(91,141,239,0.3);
     color: var(--brand-mid); font-size: 12px; padding: 5px 12px; border-radius: var(--radius-pill);
     cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s;
   }
-  .ai-starter-btn:hover { background: rgba(124,92,252,0.25); }
+  .ai-starter-btn:hover { background: rgba(91,141,239,0.25); }
 
   .messages-area { flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 12px; }
   .messages-area::-webkit-scrollbar { width: 4px; }
@@ -369,7 +369,7 @@
     padding: 0.65rem 1rem; border-radius: 18px; font-size: 14px; line-height: 1.5;
     background: var(--card2); color: var(--text);
   }
-  .msg.outgoing .msg-bubble { background: var(--brand); color: #fff; border-bottom-right-radius: 4px; }
+  .msg.outgoing .msg-bubble { background: linear-gradient(135deg, #5B8DEF, #4A7ED8); color: #fff; border-bottom-right-radius: 4px; }
   .msg.incoming .msg-bubble { border-bottom-left-radius: 4px; }
 
   .chat-input-area {
@@ -382,14 +382,14 @@
     font-size: 14px; padding: 10px 16px; outline: none; resize: none;
     transition: border-color 0.2s; max-height: 100px; min-height: 42px;
   }
-  .chat-input:focus { border-color: rgba(124,92,252,0.4); }
+  .chat-input:focus { border-color: rgba(91,141,239,0.4); }
   .chat-input::placeholder { color: var(--text3); }
   .send-btn {
-    width: 42px; height: 42px; border-radius: 50%; background: var(--brand);
+    width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #5B8DEF, #FF9E40);
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
     font-size: 1.1rem; transition: all 0.2s; flex-shrink: 0;
   }
-  .send-btn:hover { background: #9370FF; transform: scale(1.05); }
+  .send-btn:hover { background: #4E82E0; transform: scale(1.05); }
 
   /* ─── CONTENT FEED ─── */
   .feed-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; background: var(--card); border-radius: var(--radius-sm); padding: 4px; }
@@ -397,7 +397,7 @@
     flex: 1; padding: 8px; text-align: center; font-size: 13px;
     cursor: pointer; border-radius: 8px; transition: all 0.2s; color: var(--text3);
   }
-  .feed-tab.active { background: var(--brand); color: #fff; }
+  .feed-tab.active { background: linear-gradient(135deg, #5B8DEF, #8B6EFF); color: #fff; }
 
   .feed-cards { display: flex; flex-direction: column; gap: 1rem; }
   .feed-card {
@@ -405,7 +405,7 @@
     border-radius: var(--radius); overflow: hidden; cursor: pointer;
     transition: all 0.2s;
   }
-  .feed-card:hover { border-color: rgba(124,92,252,0.3); transform: translateY(-1px); }
+  .feed-card:hover { border-color: rgba(91,141,239,0.3); transform: translateY(-1px); }
   .feed-accent-bar { height: 3px; }
   .feed-body { padding: 1.25rem; }
   .feed-category { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
@@ -421,7 +421,7 @@
   /* ─── ANON SHARE ─── */
   .anon-hero {
     text-align: center; padding: 2rem 1rem 1.5rem;
-    background: radial-gradient(ellipse at 50% 0%, rgba(124,92,252,0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 0%, rgba(91,141,239,0.15) 0%, transparent 70%);
   }
   .anon-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
   .anon-hero-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -437,14 +437,14 @@
     border: 1px solid var(--border2); background: var(--bg3); color: var(--text2);
     cursor: pointer; transition: all 0.15s;
   }
-  .anon-cat.active { border-color: rgba(124,92,252,0.5); background: rgba(124,92,252,0.15); color: var(--brand-mid); }
+  .anon-cat.active { border-color: rgba(91,141,239,0.5); background: rgba(91,141,239,0.15); color: var(--brand-mid); }
   .anon-textarea {
     width: 100%; background: var(--bg3); border: 1.5px solid var(--border2);
     border-radius: var(--radius-sm); color: var(--text); font-family: 'DM Sans', sans-serif;
     font-size: 14px; padding: 1rem; resize: none; height: 90px; outline: none;
     transition: border-color 0.2s;
   }
-  .anon-textarea:focus { border-color: rgba(124,92,252,0.4); }
+  .anon-textarea:focus { border-color: rgba(91,141,239,0.4); }
   .anon-textarea::placeholder { color: var(--text3); }
   .anon-compose-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
   .anon-notice { font-size: 12px; color: var(--text3); display: flex; align-items: center; gap: 6px; }
@@ -488,7 +488,7 @@
 
   <!-- ═══════════════════════════════ LANDING ═══════════════════════════════ -->
   <div id="screen-landing" class="screen active">
-    <div class="logo-badge">✦ Muda Mendunia</div>
+    <div class="logo-badge"><svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0"><circle cx="6" cy="5" r="3" fill="#5B8DEF"/><circle cx="12" cy="5" r="3" fill="#FF9E40"/><path d="M1 16 Q6 8 9 12 Q12 8 17 16" stroke="url(#lg)" stroke-width="2.5" fill="none" stroke-linecap="round"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5B8DEF"/><stop offset="100%" stop-color="#FF9E40"/></linearGradient></defs></svg><span><b style="color:#5B8DEF">muda</b> <span style="color:#FF9E40">mendunia</span></span></div>
     <div class="landing-title">Kenal diri.<br>Temukan orang<br>yang nyambung.</div>
     <div class="landing-sub">Platform untuk Gen Z yang mau ngerti dirinya sendiri dan nemuin koneksi yang beneran relevan — bukan cuma kenalan.</div>
     <div class="landing-actions">
@@ -496,11 +496,11 @@
       <button class="btn btn-ghost" onclick="skipToMain()">Lihat dulu →</button>
     </div>
     <div class="landing-features">
-      <div class="feat-pill"><div class="feat-dot" style="background:#7C5CFC"></div>Self Discovery</div>
-      <div class="feat-pill"><div class="feat-dot" style="background:#FF6B6B"></div>Friend Matching</div>
-      <div class="feat-pill"><div class="feat-dot" style="background:#06D6A0"></div>AI Chat Support</div>
-      <div class="feat-pill"><div class="feat-dot" style="background:#FFD166"></div>Personalized Feed</div>
-      <div class="feat-pill"><div class="feat-dot" style="background:#A98BFF"></div>Anonymous Sharing</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#5B8DEF"></div>Self Discovery</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#FF9E40"></div>Friend Matching</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#8B6EFF"></div>AI Chat Support</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#FFC53D"></div>Personalized Feed</div>
+      <div class="feat-pill"><div class="feat-dot" style="background:#8B6EFF"></div>Anonymous Sharing</div>
     </div>
   </div>
 
@@ -613,8 +613,8 @@
         <div class="step-tag">Siap! 🎉</div>
         <div class="step-title">Nama atau alias kamu apa?</div>
         <div class="step-sub">Bisa nama asli atau nama panggilan — apapun yang bikin kamu nyaman.</div>
-        <input type="text" id="userName" placeholder="Nama kamu..." style="width:100%;background:var(--card);border:1.5px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:18px;padding:1rem 1.25rem;outline:none;transition:border-color 0.2s;margin-bottom:1.5rem" onfocus="this.style.borderColor='rgba(124,92,252,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
-        <div style="background:rgba(124,92,252,0.08);border:1px solid rgba(124,92,252,0.2);border-radius:var(--radius-sm);padding:1rem 1.25rem">
+        <input type="text" id="userName" placeholder="Nama kamu..." style="width:100%;background:var(--card);border:1.5px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:18px;padding:1rem 1.25rem;outline:none;transition:border-color 0.2s;margin-bottom:1.5rem" onfocus="this.style.borderColor='rgba(91,141,239,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.06)'">
+        <div style="background:rgba(91,141,239,0.08);border:1px solid rgba(91,141,239,0.2);border-radius:var(--radius-sm);padding:1rem 1.25rem">
           <div style="font-size:13px;color:var(--text2);line-height:1.6">🔒 Data kamu diproses secara lokal dan tidak dibagikan ke siapapun tanpa izin kamu. Anonymous sharing tetap 100% anonim.</div>
         </div>
       </div>
@@ -661,7 +661,7 @@
     
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="sidebar-logo">✦</div>
+      <div class="sidebar-logo" style="font-size:11px;font-weight:800;color:#fff;letter-spacing:-0.5px;font-family:serif">MM</div>
       <button class="nav-btn active" onclick="switchTab('match')" id="nav-match" title="Friend Match">👥</button>
       <button class="nav-btn" onclick="switchTab('chat')" id="nav-chat" title="Chat">💬<div class="nav-dot"></div></button>
       <button class="nav-btn" onclick="switchTab('feed')" id="nav-feed" title="Feed">✨</button>
@@ -691,7 +691,7 @@
           <div class="section-label">Match terbaik untuk kamu</div>
           <div class="matches-grid">
             <div class="match-card" onclick="openChat('Reina','🌸',['Self-Dev','Nulis','Introvert'])">
-              <div class="match-avatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+              <div class="match-avatar" style="background:rgba(255,158,64,0.15);color:#FF9E40">R</div>
               <div class="match-info">
                 <div class="match-name">Reina</div>
                 <div class="match-vibe">The Quiet Creator · Jakarta</div>
@@ -705,7 +705,7 @@
               </div>
             </div>
             <div class="match-card" onclick="openChat('Dimas','🌊',['Teknologi','Musik','Analitis'])">
-              <div class="match-avatar" style="background:rgba(124,92,252,0.15);color:#A98BFF">D</div>
+              <div class="match-avatar" style="background:rgba(91,141,239,0.15);color:#8BB8FF">D</div>
               <div class="match-info">
                 <div class="match-name">Dimas</div>
                 <div class="match-vibe">The Curious Mind · Bandung</div>
@@ -719,7 +719,7 @@
               </div>
             </div>
             <div class="match-card" onclick="openChat('Kirana','🌿',['Self-Dev','Healing','Empatik'])">
-              <div class="match-avatar" style="background:rgba(6,214,160,0.15);color:#06D6A0">K</div>
+              <div class="match-avatar" style="background:rgba(139,110,255,0.15);color:#8B6EFF">K</div>
               <div class="match-info">
                 <div class="match-name">Kirana</div>
                 <div class="match-vibe">The Gentle Thinker · Yogyakarta</div>
@@ -733,7 +733,7 @@
               </div>
             </div>
             <div class="match-card" onclick="openChat('Faiz','🔥',['Teknologi','Sosial','Explorer'])">
-              <div class="match-avatar" style="background:rgba(255,209,102,0.15);color:#FFD166">F</div>
+              <div class="match-avatar" style="background:rgba(255,209,102,0.15);color:#FFC53D">F</div>
               <div class="match-info">
                 <div class="match-name">Faiz</div>
                 <div class="match-vibe">The Visionary · Surabaya</div>
@@ -747,7 +747,7 @@
               </div>
             </div>
             <div class="match-card" onclick="openChat('Sari','🌸',['Musik','Seni','Kreatif'])">
-              <div class="match-avatar" style="background:rgba(169,139,255,0.2);color:#A98BFF">S</div>
+              <div class="match-avatar" style="background:rgba(169,139,255,0.2);color:#8BB8FF">S</div>
               <div class="match-info">
                 <div class="match-name">Sari</div>
                 <div class="match-vibe">The Creative Soul · Malang</div>
@@ -771,8 +771,8 @@
             <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--border2)">
               <input type="text" placeholder="Cari percakapan..." style="width:100%;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--radius-pill);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 14px;outline:none">
             </div>
-            <div class="chat-list-item active" onclick="setActiveChat(this,'Reina','R','rgba(255,107,107,0.15)','#FF6B6B','94%')">
-              <div class="chat-list-avatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+            <div class="chat-list-item active" onclick="setActiveChat(this,'Reina','R','rgba(255,158,64,0.15)','#FF9E40','94%')">
+              <div class="chat-list-avatar" style="background:rgba(255,158,64,0.15);color:#FF9E40">R</div>
               <div class="chat-list-info">
                 <div class="chat-list-name">Reina</div>
                 <div class="chat-list-preview">Haha iya beneran relatable 😅</div>
@@ -782,16 +782,16 @@
                 <div class="unread-dot"></div>
               </div>
             </div>
-            <div class="chat-list-item" onclick="setActiveChat(this,'Dimas','D','rgba(124,92,252,0.15)','#A98BFF','89%')">
-              <div class="chat-list-avatar" style="background:rgba(124,92,252,0.15);color:#A98BFF">D</div>
+            <div class="chat-list-item" onclick="setActiveChat(this,'Dimas','D','rgba(91,141,239,0.15)','#8BB8FF','89%')">
+              <div class="chat-list-avatar" style="background:rgba(91,141,239,0.15);color:#8BB8FF">D</div>
               <div class="chat-list-info">
                 <div class="chat-list-name">Dimas</div>
                 <div class="chat-list-preview">Eh kamu tau ga soal...</div>
               </div>
               <div class="chat-list-time">2j</div>
             </div>
-            <div class="chat-list-item" onclick="setActiveChat(this,'Kirana','K','rgba(6,214,160,0.15)','#06D6A0','87%')">
-              <div class="chat-list-avatar" style="background:rgba(6,214,160,0.15);color:#06D6A0">K</div>
+            <div class="chat-list-item" onclick="setActiveChat(this,'Kirana','K','rgba(139,110,255,0.15)','#8B6EFF','87%')">
+              <div class="chat-list-avatar" style="background:rgba(139,110,255,0.15);color:#8B6EFF">K</div>
               <div class="chat-list-info">
                 <div class="chat-list-name">Kirana</div>
                 <div class="chat-list-preview">Makasih ya udah sharing 🤍</div>
@@ -801,7 +801,7 @@
           </div>
           <div class="chat-window">
             <div class="chat-top">
-              <div class="chat-top-avatar" id="chatAvatar" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+              <div class="chat-top-avatar" id="chatAvatar" style="background:rgba(255,158,64,0.15);color:#FF9E40">R</div>
               <div class="chat-top-info">
                 <div class="chat-name" id="chatName">Reina</div>
                 <div class="chat-compat" id="chatCompat">✦ 94% kecocokan</div>
@@ -822,19 +822,19 @@
             </div>
             <div class="messages-area" id="messagesArea">
               <div class="msg incoming">
-                <div class="msg-avatar" id="msgAvatarInc" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+                <div class="msg-avatar" id="msgAvatarInc" style="background:rgba(255,158,64,0.15);color:#FF9E40">R</div>
                 <div class="msg-bubble">Hii! Seneng banget nemuin kamu di sini. Kayaknya kita banyak kesamaan ya 👀</div>
               </div>
               <div class="msg outgoing">
-                <div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div>
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#8BB8FF,#5B8DEF);color:#fff">A</div>
                 <div class="msg-bubble">Iya haha, aku juga surprised. Kamu suka nulis juga ternyata!</div>
               </div>
               <div class="msg incoming">
-                <div class="msg-avatar" id="msgAvatarInc2" style="background:rgba(255,107,107,0.15);color:#FF6B6B">R</div>
+                <div class="msg-avatar" id="msgAvatarInc2" style="background:rgba(255,158,64,0.15);color:#FF9E40">R</div>
                 <div class="msg-bubble">Iya, nulis itu kayak cara aku ngolah perasaan yang susah diucapin. Kamu juga kayak gitu?</div>
               </div>
               <div class="msg outgoing">
-                <div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div>
+                <div class="msg-avatar" style="background:linear-gradient(135deg,#8BB8FF,#5B8DEF);color:#fff">A</div>
                 <div class="msg-bubble">Persis banget! Haha iya beneran relatable 😅</div>
               </div>
             </div>
@@ -963,7 +963,7 @@
                   <div class="anon-handle">anonim</div>
                 </div>
                 <div class="spacer"></div>
-                <div class="anon-cat-badge" style="background:rgba(124,92,252,0.15);color:var(--brand-mid)">Mental & Perasaan</div>
+                <div class="anon-cat-badge" style="background:rgba(91,141,239,0.15);color:var(--brand-mid)">Mental & Perasaan</div>
               </div>
               <div class="anon-post-text">Kadang aku ngerasa kayak ada dua versi diriku. Yang satu kelihatan di luar — santai, mandiri, "oke-oke aja". Tapi di dalem, ada yang capek dan pengen didengar. Nggak tau cara ngomongnya gimana.</div>
               <div class="anon-reactions">
@@ -995,7 +995,7 @@
                   <div class="anon-handle">anonim</div>
                 </div>
                 <div class="spacer"></div>
-                <div class="anon-cat-badge" style="background:rgba(255,107,107,0.12);color:var(--accent)">Hubungan</div>
+                <div class="anon-cat-badge" style="background:rgba(255,158,64,0.12);color:var(--accent)">Hubungan</div>
               </div>
               <div class="anon-post-text">Aku baru sadar kalau selama ini aku lebih sering dengerin orang lain daripada didengar. Bukan karena nggak ada yang peduli, tapi kayak aku nggak mau ngebebanin siapapun. Dan itu lelah.</div>
               <div class="anon-reactions">
@@ -1104,7 +1104,7 @@
     const area = document.getElementById('messagesArea');
     const msg = document.createElement('div');
     msg.className = 'msg outgoing';
-    msg.innerHTML = `<div class="msg-avatar" style="background:linear-gradient(135deg,#A98BFF,#7C5CFC);color:#fff">A</div><div class="msg-bubble">${text}</div>`;
+    msg.innerHTML = `<div class="msg-avatar" style="background:linear-gradient(135deg,#8BB8FF,#5B8DEF);color:#fff">A</div><div class="msg-bubble">${text}</div>`;
     area.appendChild(msg);
     input.value = '';
     area.scrollTop = area.scrollHeight;
@@ -1160,8 +1160,8 @@
     const posts = document.querySelector('.anon-posts');
     const post = document.createElement('div');
     post.className = 'anon-post';
-    post.style.borderColor = 'rgba(124,92,252,0.4)';
-    post.innerHTML = `<div class="anon-post-header"><div class="anon-mask">✨</div><div class="anon-post-meta"><div class="anon-handle">kamu (anonim)</div></div><div class="spacer"></div><div class="anon-cat-badge" style="background:rgba(124,92,252,0.15);color:var(--brand-mid)">Baru saja</div></div><div class="anon-post-text">Pesanmu sudah dibagikan secara anonim. Komunitas mendengar kamu. 🤍</div><div class="anon-reactions"><div class="react-btn">🤍 0</div></div>`;
+    post.style.borderColor = 'rgba(91,141,239,0.4)';
+    post.innerHTML = `<div class="anon-post-header"><div class="anon-mask">✨</div><div class="anon-post-meta"><div class="anon-handle">kamu (anonim)</div></div><div class="spacer"></div><div class="anon-cat-badge" style="background:rgba(91,141,239,0.15);color:var(--brand-mid)">Baru saja</div></div><div class="anon-post-text">Pesanmu sudah dibagikan secara anonim. Komunitas mendengar kamu. 🤍</div><div class="anon-reactions"><div class="react-btn">🤍 0</div></div>`;
     posts.insertBefore(post, posts.firstChild);
     setTimeout(() => post.style.borderColor = '', 3000);
   }
