@@ -237,8 +237,11 @@ input.q-inp::placeholder, textarea.q-inp::placeholder { color:var(--text3); }
 .sidebar {
   width:100%;
   display:flex; flex-direction:row; align-items:center; justify-content:center;
-  padding:.75rem 1rem 1.1rem; gap:0; flex-shrink:0;
-  background: transparent;
+  padding:.65rem 1rem .85rem; gap:0; flex-shrink:0;
+  background: rgba(250,248,244,0.92);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-top: 1px solid rgba(0,0,0,0.07);
   position:fixed; bottom:0; left:0; right:0; z-index:200;
 }
 
@@ -250,16 +253,14 @@ input.q-inp::placeholder, textarea.q-inp::placeholder { color:var(--text3); }
 
 .sidebar-pill {
   display:flex; align-items:center; gap:2px;
-  background: rgba(255,255,255,0.82);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.6);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 100px;
   padding: 5px;
   box-shadow:
-    0 8px 32px rgba(27,109,245,.13),
-    0 2px 8px rgba(0,0,0,.06),
-    inset 0 1px 0 rgba(255,255,255,.9);
+    0 -2px 20px rgba(0,0,0,0.06),
+    0 8px 32px rgba(27,109,245,.15),
+    0 2px 12px rgba(0,0,0,.10);
 }
 
 /* hide logo & spacer in bottom navbar */
@@ -963,7 +964,7 @@ input.q-inp::placeholder, textarea.q-inp::placeholder { color:var(--text3); }
     <path d="M4.75 14.05h10s0.75 0 0.75 0.75v0.5s0 0.75 -0.75 0.75h-10s-0.75 0 -0.75 -0.75v-0.5s0 -0.75 0.75 -0.75" fill="currentColor" stroke-width="1"></path>
     <path d="M4.75 18.05h7.5s0.75 0 0.75 0.75v0.5s0 0.75 -0.75 0.75h-7.5s-0.75 0 -0.75 -0.75v-0.5s0 -0.75 0.75 -0.75" fill="currentColor" stroke-width="1"></path>
   </g></svg></button>
-    <button class="nav-btn" id="nav-anon" onclick="switchTab('anon')" title="Safe Space"><svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="flex-shrink:0"><rect width="48" height="48" fill="url(#pattern0_33_2)"/><defs><pattern id="pattern0_33_2" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_33_2" transform="scale(0.0208333)"/></pattern><image id="image0_33_2" width="48" height="48" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAD5klEQVR4AdXBX2jUdQAA8M/97kcsOmrQoINGWUhFjZKUWuXDwEmWw3wQWjRRiILIByEjoSIkowTBaEJE//wXWSmt/0YrjAqsFBb4MMLggntYsIdVh9zDD0k44btvN92cd+f1+eRcuA4sQS9uwwJ0oxOdaqYwhTJK+BVHcBRVFyBnfjowiAfQj4L5qWAUH2M/qs5Tzvkp4mmsR6fGmsIubMOEOcqZmwKewUZ0aK4qXsGLqJhFzuxW4DUscHZ/4DCO4jjKmMSUmk50oRs9WII+XOvsSngch5xDztmleAGbzWwCu7EPx83PIgxiHYpmtgVbkZlBzsxSvIc16pWwBfuQaYwUQ3geC9Q7gIeQ+Y+8eim+xIBYhpfwII7ilMY5hTG8jhzuRiK4GbfjQ5wyTV69d7FKrASV2INM82T4Fl9jBS4X3IAbcNA0ebGN2CR2DMswrnXKeA/LURT04C8ccUZe0IP3kQrGcS8mtF4FIxhAl6APBzHptESwAx2CSSzHhItnAvdhUtCBYWckavrRL/Yoyi6+Eh4V60ef0xI1G8U+x4j2MYKvxDY5LUERI8We1X42i61EV4IBsZ8wpv2M4ZjY6gR9Yp9pXyNiSxP0iB3Wvn4QW5TgKrGS9nVC7MoERbGy9lUW606QiRW0tx9Nk8cj6BTsxaSLowuroAZ9KGICJwV7cAtuRpaihGsFPRjXWgW8gA1IxTLsxHOoIMMgjjgtj0XoFfyDT7ROF77HKiTqJejF/TiIkziFLzCeVzMkuAbDyLTG57jD7Iq4HXvV/I3fEhzGlKALg1pjNfrEfsc2bMPvYv1YbZo8MlyHJYIevIFMc72MmwTfYCkOYRRv405cL7gU+52RqNmOTLAQWzXfYrFNqAqq2CS22DSJmhN4S+xJrNFc3WJj6o2JdZsmEWzGhNg7WKGNJYIprEUmKOBTDGhTOfU2YFjsO/RpjAJ2YAgd5qeKXXgqr97PuAsLBcfwgcZ4FY8hNX8pluCKRL0O3CN2QOM8rHHWJeqtQUFQwYiZLcR69CI1NcZwXuuN4jLcikvMTwXD2Pwv1+PnEHAINoMAAAAASUVORK5CYII="/></defs></svg></button>
+    <button class="nav-btn" id="nav-anon" onclick="switchTab('anon')" title="Safe Space"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFF0lEQVR4AcyaT+hVRRTHX1HQokWLghYFBUVFRQUJLQpq16KoRVBQLYIWQUEFBUFBBUFEQYW6EBUUXQgiLlREXKioqKgoqKigqOhCUcGFC0FBP5/rm8f47ty5f959j/fjnHvmnTl35nxnzvy9v/sHs/17lOq+hNfDZ+DbEV8mvRP+A34VbkSzAvA43vwLn4eXwh/CT8ExCe5NFD/Dh+D98HtwlqoAPMJbP8BvwJPSZxRwHP4OfghuSq9juAFeCwsOUaYqAP9h+jdslz6B7EqWsYqXbRBEJ/qIt+yN55ElqgIQuvcB3ngG7kKGjL3Y5d3xd/RnG8qSLzEAW8kKf8PwRTjQ1yTUtQmnr3jHkEH0Ro4jB//DcYkxgBA2v2IQx5xdqK5pONlKtj7F9E4vUaKzFOIuxQDuaiZ//kMRbQYr5q3IiBiNhxiAXf4jRf0OX4EDrSOh7i3kBThHFvxBzmCYdxFpXS8jH4Qfg9+HN8F15LjU18IuBnANja1nvB8jHWgRCXV7kXXklFlnsxuDF2DrOoq8BdtgG5HO+58j1SEq6VNyirEQA0A3orPDlAWdGqabCB3I2Z0k813YxkIkaTVaewdRSTrvojeoAmAXWUiTsAm1WOgr4UeF/An9dbiOnFDiKEjZF7NiFQBbyC5uEjahcGefkE5JyzRMUnkp3ZqUMtK5NlT2QGTXOOk6kjM2fAzJnE2c5/iIf4+nXRd6BTBewUx+V4VQl8qdSXLvPUemUyCiEblo5QydinvtgRPUlgsRQ6xulqKIEX08SqUTxezYZw/o/MF0XSPtn6ScrRBZchas64FigukTgB7VzTKu1JsxtDcQSXIxdBuezBwqnYq3m+4bwAoKtScQleQC5AHHna+t7Lhw82h4eYDx/KCusgAylsNFPX0DcK9UxCYV5Mgp0FY+gtFN2POwzguCn1nScbc3hVELAIV93cPYNUzq7CbJ/4uXR43UJwCdn9Y5AJ8LcpKYynlgFs7b6obYjQLK8NFHD8zCeTd2biyLxWvoeyEmBTAL55fgqTvPkvPoJ1qJ2zhv9+tI0gkdSfAWdK/BXhA475MsU9ceaOO8Wwy7X0eexgWPjouR++BzsHSVx2nY4+v3yCdhDz6HkVnqAqCt8+/gQWh5B6Cr9TfoDAv39PeRdiHzPOENiIcZ1xPU9dQWwCTO13vTwaINgLlzXrxNAcyl800BzK3zTQDMtfN1AObe+RyANs5bzkoeYaokOTtKDeK2zuvttzz63kZ7avPQ43pB8WkaB9DFeUv2gOIHiD5BuKB56Mle68cAXOqb7uddKb2k1fnAfYNwlbZsj5eu0qZLHABosLCUm1a4t1lAlmfb/5ExCcKvKF2/D4Sw8Ta80VeiAMBvtyKNnUml3cvEextDzo1ZbGsYeViPdU3TIWz8IuT+KLznHkldKZwCAFsuGOekIOOCtRWEu0jTsjd09pLpqXMA4H69SWUC2IqhrYwoyFuCT0h9AXvgXjAYDCr379jkyMbwWt8vQjZEsLWB1Lktd/wF/ehAswyN19+IWrK3nHHiMBGEd0Le/4ePI7UFJQz0wWt9x4DHyGDiNYq64jYuKJWhB1yEPGjcgw6DHbCnovE4F8Qe8hr/TwO2bSk0hI1TGSEBgIXv4vEsLBDDwZnmbX57KvIAMj7jeMf5C/nTohBOpbCJK4wBqHeW8cRkOBxQEbEFjoPQPjLpNRnCqRQ2cS3jAOK8VFoQDrJLZLqQTbMHqKKe7gAAAP//oas2iAAAAAZJREFUAwAPweOhqu60HgAAAABJRU5ErkJggg==" width="22" height="22" style="flex-shrink:0" class="nav-icon"></button>
     <div class="sb-av" id="sbAv" onclick="switchTab('profil')" title="Profil">A</div>
   </div>
 
