@@ -235,12 +235,11 @@ input.q-inp::placeholder, textarea.q-inp::placeholder { color:var(--text3); }
 
 /* ── BOTTOM NAVBAR ── */
 .sidebar {
-  order: 999;
   width:100%;
   display:flex; flex-direction:row; align-items:center; justify-content:center;
   padding:.75rem 1rem 1.1rem; gap:0; flex-shrink:0;
   background: transparent;
-  position:relative; z-index:50;
+  position:fixed; bottom:0; left:0; right:0; z-index:200;
 }
 
 /* floating pill container */
@@ -326,7 +325,7 @@ input.q-inp::placeholder, textarea.q-inp::placeholder { color:var(--text3); }
 }
 .pt { font-size:1rem; font-weight:700; letter-spacing:-.015em; }
 .ps { font-size:11.5px; color:var(--text3); margin-top:2px; }
-.pb { flex:1; overflow-y:auto; padding:1.25rem 1.5rem; }
+.pb { flex:1; overflow-y:auto; padding:1.25rem 1.5rem 5.5rem; }
 
 /* ─ chips ─ */
 .chip { padding:6px 13px; border-radius:var(--r-pill); font-size:12px; background:var(--white); border:1px solid var(--border); cursor:pointer; transition:all .18s; color:var(--text2); font-weight:500; white-space:nowrap; }
